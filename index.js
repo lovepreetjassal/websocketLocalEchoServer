@@ -4,19 +4,14 @@ const server = http.createServer();
 const wss = new WebSocket.Server({ server });
 server.listen(8080);
 
-
 wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(message) {
         let parsedJSON = JSON.parse(message);
-        ws.send(JSON.stringify({
-            test:"test"
-        }));
+        ws.send(JSON.stringify(parsedJSON));
     });
 
     ws.on("close", function (code, reason) {
-    	console.log("closed");
+        console.log("closed");
     });
-
-    
 });
 
